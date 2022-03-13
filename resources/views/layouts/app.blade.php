@@ -52,16 +52,32 @@
                                 </li>
                             @endif
                         @else
+
+                        <?php
+                        // Manejo del menu en base a los roles
+                            if (auth()->user()->rols_id == 1) {
+                                $menu = '<li class="nav-item"><a class="nav-link" href="/users" role="button">Usuarios</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/subjects" role="button">Asignaturas</a></li>'; 
+                            } else if (auth()->user()->rols_id == 2) {
+                                $menu = '<li class="nav-item"><a class="nav-link" href="/users" role="button">Estudiantes</a></li>';
+                            } else {
+                                $menu = '<li class="nav-item"><a class="nav-link" href="/qualifications" role="button">Notas</a></li>';
+                            }
+                        ?>
+                            <?= $menu ?>
+                        
                             <li class="nav-item dropdown">
+
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->name }} - 
+                                    <!-- Nombre del Rol --> {{ Auth::user()->rols_id == 1 ? 'Admin' : '' }} {{ Auth::user()->rols_id == 2 ? 'Docente' : '' }} {{ Auth::user()->rols_id == 3 ? 'Estudiante' : '' }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Salir') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
