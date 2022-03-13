@@ -5,6 +5,7 @@ use App\Http\Controllers\QualificationController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StudentSubjectController;
 use App\Http\Controllers\TeacherSubjectController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,11 @@ Route::resource('qualifications', QualificationController::class); //Rutas para 
 Route::resource('settings', SettingController::class); //Rutas para los ajustes del aplicativo
 Route::resource('student-subjects', StudentSubjectController::class); //Rutas para los estudiantes y sus asignaturas
 Route::resource('teacher-subjects', TeacherSubjectController::class); //Rutas para los docentes y su asignatura
+// Rutas para ver, crear, editar, eliminar un usuario.
+Route::get('users/list/{rol}', function ($rol) {
+    return  UserController::index($rol);
+});
+Route::resource('users', UserController::class); //Rutas para los usuarios registrados
 
 Auth::routes();
 
