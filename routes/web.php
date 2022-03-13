@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\QualificationController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\StudentSubjectController;
+use App\Http\Controllers\TeacherSubjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +22,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('subjects', SubjectController::class);
+Route::resource('subjects', SubjectController::class); //Rutas para las asignaturas
+Route::resource('qualifications', QualificationController::class); //Rutas para las notas
+Route::resource('settings', SettingController::class); //Rutas para los ajustes del aplicativo
+Route::resource('student-subjects', StudentSubjectController::class); //Rutas para los estudiantes y sus asignaturas
+Route::resource('teacher-subjects', TeacherSubjectController::class); //Rutas para los docentes y su asignatura
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
