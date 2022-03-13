@@ -1,0 +1,23 @@
+[33mcommit d7830ef2f69aa91874177159d84485b6039f47ed[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Manuel <garciahildo@gmail.com>
+Date:   Sat Mar 12 23:19:41 2022 -0500
+
+    Configuracion del CRUD de Asignaturas
+
+[33mcommit 146d35b3d382a6562257f7283097bfbf0ca99246[m
+Author: Manuel <garciahildo@gmail.com>
+Date:   Sat Mar 12 22:53:53 2022 -0500
+
+    Se agrega Crud generador
+
+[33mcommit 9c5f49688858f19c1a98fa236922fc07acae28ad[m
+Author: Manuel <garciahildo@gmail.com>
+Date:   Sat Mar 12 22:45:28 2022 -0500
+
+    Creacion de migracion para las asignaturas
+
+[33mcommit 87ef20e62de335bbd440c3e020233970344edddc[m
+Author: Manuel <garciahildo@gmail.com>
+Date:   Sat Mar 12 22:36:22 2022 -0500
+
+    Laravel 8
