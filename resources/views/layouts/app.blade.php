@@ -81,10 +81,9 @@
                                 <?php
                                 // Manejo del menu en base a los roles
                                     if (auth()->user()->rols_id == 1) {
-                                        $menu = '<a class="dropdown-item" href="/settings">Ajustes</a>'; 
+                                        echo '<a class="dropdown-item" href="/settings">Ajustes</a>'; 
                                     }
                                 ?>
-                                <?= $menu ?>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
