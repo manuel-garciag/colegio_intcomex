@@ -1,61 +1,100 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# SISTEMA DE COLEGIO INTCOMEX
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Se realiza la prueba de intcomex donde se requiere un sistema de colegio con 3 roles (Admin, Docente, Estudiante)
 
-## About Laravel
+## Los usuarios por defecto son:
+    1. Admin
+        - Usuario: admin@colint.com
+        - Contraseña: 1234abcd
+    2.  Docente
+        - Usuario: docente@colint.com
+        - Contraseña: 1234abcd
+    3.  Estudiante
+        - Usuario: estudiante@colint.com
+        - Contraseña: 1234abcd
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Esta es la vista inicial del sistema
+![image](https://user-images.githubusercontent.com/53983396/158272494-6113e7a9-e744-4c40-935b-0fd98a767e8e.png)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## El paso a paso para instalar es el siguiente:
 
-## Learning Laravel
+1. Abrimos la terminal o nuestro CMD si estamos en Windows
+2. Validamos que tengamos las herramientas necesarias para realizar la instalacion correctamente
+    ```
+    php -v
+    composer --version
+    npm -v
+    ```
+    #### PHP
+    ![image](https://user-images.githubusercontent.com/53983396/158273011-699d9e43-cc10-4846-8088-4bd609f0b78e.png)
+    
+    #### COMPOSER
+    ![image](https://user-images.githubusercontent.com/53983396/158272971-5619dcb4-ea21-4885-9762-aa0df3cd957f.png)
+    
+    #### NPM
+    ![image](https://user-images.githubusercontent.com/53983396/158273046-9b6d60bd-eecf-44a1-8564-47c199012c6d.png)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3.  Si tenemos todo correctamente nos dirigimos a la ruta donde deseamos instalar el proyecto, en mi caso lo instalare en c:\xampp\htdocs
+    - Una vez en la carpeta ejecutamos el siguiente comando
+    ```
+    git clone https://github.com/manuel-garciag/colegio_intcomex
+    ```
+    ![image](https://user-images.githubusercontent.com/53983396/158273478-f4b61a2d-6d93-4350-84a6-375beba6a8d3.png)
+    - Ingresamos al proyecto con
+    ```
+    cd colegio_intcomex
+    ```
+4. Una vez en la carpeta del proyecto ingresamos los siguientes comandos
+    ```
+    composer install
+    npm install
+    npm run dev
+    ```
+    #### composer install
+    ![image](https://user-images.githubusercontent.com/53983396/158274084-721b1536-2548-49c2-bd87-28b02ffa73d4.png)
+        
+    #### npm install
+    ![image](https://user-images.githubusercontent.com/53983396/158274263-661776f1-70a0-46a4-ac1b-9bd0100d4246.png)
+        
+    #### npm run dev
+    ![image](https://user-images.githubusercontent.com/53983396/158274405-136fbc0d-e2b6-4e49-98c1-2812b841c736.png)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+5.  Cuando tengamos todo listo nos dirigimos a localhost/phpmyadmin o creamos una base de datos en nuestro gestor de base preferido por ejemplo (dbeaver) y creamos una tabla preferiblemente con el nombre que deseen, cuando creemos la base de datos nos dirigimos a nuestro editor de codigo faorito y duplicamos el archivo .env.example con el nombre .env luego lo abrimos y en los campos
+     - DB_DATABASE
+     - DB_USERNAME
+     - DB_PASSWORD
 
-## Laravel Sponsors
+    Los editamos con los datos de nuestro servidor, 
+6.  Cuando tengamos estos 3 datos configurados, en la misma terminal/CMD vamos a ingresar 
+    ```
+    php artisan migrate --path=/database/migrations/2022_03_13_183344_create_rols_table.php
+    ```
+    ![image](https://user-images.githubusercontent.com/53983396/158275659-04abe1eb-7009-4cd6-9286-55351b674f37.png)
+    
+    Despues ejecutaremos el siguiente comando
+    ```
+    php artisan migrate
+    ```
+    ![image](https://user-images.githubusercontent.com/53983396/158275728-ea00c0bb-af28-4a52-9a6c-e999c7d4a67f.png)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+7.  Cuando ejecutemos las migraciones en la misma consola ejecutamos 
+    ```
+    php artisan key:generate
+    ```
+    ##### Esto para generar una key y que nuestro aplicativo funcione
+    ![image](https://user-images.githubusercontent.com/53983396/158276062-437ebb1c-03d0-4c61-ac2a-ead245fe9af2.png)
 
-### Premium Partners
+    Despues
+    ```
+    php artisan serve
+    ```
+    ![image](https://user-images.githubusercontent.com/53983396/158275861-2c0ff319-8c3b-4805-8eb8-41f9b22e5b46.png)
+    
+    Ingresamos a la url que nos da la terminal/CMD
+    en mi caso fue la http://127.0.0.1:8000 y por lo general es esta la misma para todos los proyectos en laravel
+    
+8.  Nos dirigimos al navegador y pegamos la url en la barra de busquedas y damos enter
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+9.  En la parte superior nos aparecera la opcion de logueo y registrar
+    ![image](https://user-images.githubusercontent.com/53983396/158276170-77c5b21f-43dd-4e40-a8b5-c649ae4c2377.png)
