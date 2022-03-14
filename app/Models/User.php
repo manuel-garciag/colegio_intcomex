@@ -83,7 +83,7 @@ class User extends Authenticatable
             $users = DB::table('users')
             ->where('rols_id', $rol_id)
             ->join('rols', 'users.rols_id', '=', 'rols.id')
-            ->select('users.id', 'users.name', 'users.email', 'rols.name as rol_name')
+            ->select('users.id', 'users.name', 'users.email', 'rols.name as rol_name', 'rols.id as rol_id')
             ->get();
 
             $result['status'] = true;

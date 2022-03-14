@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Update Subject
+    Actualizar Asignatura
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Update Subject</span>
+                        <span class="card-title">Actualizar Asignatura</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('subjects.update', $subject->id) }}"  role="form" enctype="multipart/form-data">

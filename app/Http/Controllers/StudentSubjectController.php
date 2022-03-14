@@ -106,4 +106,13 @@ class StudentSubjectController extends Controller
         return redirect()->route('student-subjects.index')
             ->with('success', 'StudentSubject deleted successfully');
     }
+
+    /**
+     * Guardamos los  datos del estudiante en la tabla de relaciones con las asignaturas
+     */
+    public function setSubjectsStudent($data){
+        $studentSubject = StudentSubject::create($data);
+        return $studentSubject;
+    }
+
 }

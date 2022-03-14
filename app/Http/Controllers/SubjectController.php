@@ -106,4 +106,13 @@ class SubjectController extends Controller
         return redirect()->route('subjects.index')
             ->with('success', 'Subject deleted successfully');
     }
+
+    /**
+     * Funcion que lista todas las asignaturas
+     */
+    public static function listSubjects()
+    {
+        $subject = Subject::listSubject();
+        return $subject;
+    }
 }

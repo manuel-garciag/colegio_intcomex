@@ -17,7 +17,7 @@ class CreateSubjectsTable extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $table->char('name', 100)->nullable(false);
+            $table->char('name', 100)->nullable(false)->unique();
             $table->tinyInteger('status')->default(1)->comment('0 Inactivo | 1 Activo');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();

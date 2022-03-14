@@ -106,4 +106,13 @@ class TeacherSubjectController extends Controller
         return redirect()->route('teacher-subjects.index')
             ->with('success', 'TeacherSubject deleted successfully');
     }
+
+    /**
+     * Guardamos los  datos del docente en la tabla de relaciones con las asignaturas
+     */
+    public function setSubjectsTeacher($data){
+        $teacherSubject = TeacherSubject::create($data);
+        return $teacherSubject;
+    }
+
 }

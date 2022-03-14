@@ -23,11 +23,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('subjects', SubjectController::class); //Rutas para las asignaturas
+//Rutas para las asignaturas
+Route::resource('subjects', SubjectController::class); 
+
 Route::resource('qualifications', QualificationController::class); //Rutas para las notas
 Route::resource('settings', SettingController::class); //Rutas para los ajustes del aplicativo
+
 Route::resource('student-subjects', StudentSubjectController::class); //Rutas para los estudiantes y sus asignaturas
 Route::resource('teacher-subjects', TeacherSubjectController::class); //Rutas para los docentes y su asignatura
+
+
+
 // Rutas para ver, crear, editar, eliminar un usuario.
 Route::get('users/list/{rol}', function ($rol) {
     return  UserController::index($rol);

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class Subject
@@ -33,6 +34,24 @@ class Subject extends Model
      */
     protected $fillable = ['name','status'];
 
+    /**
+     * Lista de las asignaturas
+     * @return $result
+     */
+    public static function listSubject(){
+      $result = array();
+      $result['status'] = false;
+      $result['data'] = [];
 
+          $users = DB::table('subjects')
+          ->where('status', 1)
+          ->select('id', 'name')
+          ->get();
+
+          $result['status'] = true;
+          $result['data'] = [$users];
+
+      return  $result;
+  }
 
 }
