@@ -17,6 +17,7 @@ class CreateQualificationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('teacher_users_id')->unsigned(); //Foranea con tabla de usuarios Rol Docentes
             $table->unsignedBigInteger('student_users_id')->unsigned(); //Foranea con tabla de usuarios Rol Estudiantes
+            $table->float('nota', 10, 2); // Nota de los estudiantes
             $table->tinyInteger('status')->default(1)->comment('0 Inactivo | 1 Activo');
             $table->timestamps();
 

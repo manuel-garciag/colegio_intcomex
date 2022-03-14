@@ -62,7 +62,7 @@
                                         <li class="nav-item"><a class="nav-link" href="/users/list/estudiante" role="button">Estudiantes</a></li>
                                         <li class="nav-item"><a class="nav-link" href="/subjects" role="button">Asignaturas</a></li>'; 
                             } else if (auth()->user()->rols_id == 2) {
-                                $menu = '<li class="nav-item"><a class="nav-link" href="/users" role="button">Estudiantes</a></li>';
+                                $menu = '<li class="nav-item"><a class="nav-link" href="/listEstudiantes" role="button">Estudiantes</a></li>';
                             } else {
                                 $menu = '<li class="nav-item"><a class="nav-link" href="/qualifications" role="button">Notas</a></li>';
                             }

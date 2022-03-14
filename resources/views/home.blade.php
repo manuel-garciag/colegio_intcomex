@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('Bienvenido ' . Auth::user()->name . '!') }} 
+                    <br>
+                    {{ __(Auth::user()->name . '. En la parte superior (Menu) encontraras las opciones disponibles.') }} 
                 </div>
             </div>
         </div>

@@ -29,13 +29,10 @@ class UserController extends Controller
 
                 $rol = ['rols_id' => $rol_id['data']['id'][0]->id];
 
-                // $userasd = User::paginate();
                 $users = User::listUsers($rol);
                 if($users['status'] == true ){
 
                     $users = $users['data'][0];
-                    // dd($userasd);
-                    // dd($users);
                     
                     return view('user.index', compact('users'))
                     ->with('i', count($users));

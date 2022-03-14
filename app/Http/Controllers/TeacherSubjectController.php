@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\TeacherSubject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 /**
  * Class TeacherSubjectController
@@ -110,9 +112,33 @@ class TeacherSubjectController extends Controller
     /**
      * Guardamos los  datos del docente en la tabla de relaciones con las asignaturas
      */
-    public function setSubjectsTeacher($data){
+    public function setSubjectsTeacher($data)
+    {
         $teacherSubject = TeacherSubject::create($data);
         return $teacherSubject;
     }
 
+    /**
+     * Lista de estudiantes asociados a un docente
+     */
+    public static function listStudents()
+    {
+
+        // $userId = Auth::id();
+        // dd($userId);
+        // $email = Auth::user()->email;
+        // $email = Auth::check() Auth::getUser();
+        // dd($email);
+
+        $id  = 2;
+
+        $users = TeacherSubject::listUsers($id);
+        if ($users['status'] == true) {
+
+            $users = $users['data'][0];
+
+            return view('user.index', compact('users'))
+                ->with('i', count($users));
+        }
+    }
 }

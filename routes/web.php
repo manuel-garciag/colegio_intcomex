@@ -7,6 +7,7 @@ use App\Http\Controllers\StudentSubjectController;
 use App\Http\Controllers\TeacherSubjectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,10 @@ Route::resource('settings', SettingController::class); //Rutas para los ajustes 
 Route::resource('student-subjects', StudentSubjectController::class); //Rutas para los estudiantes y sus asignaturas
 Route::resource('teacher-subjects', TeacherSubjectController::class); //Rutas para los docentes y su asignatura
 
-
+//Ruta para ver los estudiantes asociados a un docente y una asignatura
+Route::get('/listEstudiantes', function(){
+    return TeacherSubjectController::listStudents();
+});
 
 // Rutas para ver, crear, editar, eliminar un usuario.
 Route::get('users/list/{rol}', function ($rol) {
