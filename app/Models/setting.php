@@ -23,7 +23,6 @@ class Setting extends Model
     static $rules = [
 		'nota_minima' => 'required',
 		'num_notas' => 'required',
-		'status' => 'required',
     ];
 
     protected $perPage = 20;
@@ -33,7 +32,7 @@ class Setting extends Model
      *
      * @var array
      */
-    protected $fillable = ['nota_minima','num_notas','status'];
+    protected $fillable = ['nota_minima','num_notas'];
 
 
 
