@@ -56,7 +56,8 @@
                         <?php
                         // Manejo del menu en base a los roles
                             if (auth()->user()->rols_id == 1) {
-                                $menu = '<li class="nav-item"><a class="nav-link" href="/users/list/docente" role="button">Docentes</a></li>
+                                $menu = '<li class="nav-item"><a class="nav-link" href="/users/list/admin" role="button">Administradores</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/users/list/docente" role="button">Docentes</a></li>
                                         <li class="nav-item"><a class="nav-link" href="/users/list/estudiante" role="button">Estudiantes</a></li>
                                         <li class="nav-item"><a class="nav-link" href="/subjects" role="button">Asignaturas</a></li>'; 
                             } else if (auth()->user()->rols_id == 2) {
