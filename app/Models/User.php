@@ -93,4 +93,39 @@ class User extends Authenticatable
         return  $result;
     }
 
+    public static function getUser($id)
+    {
+        $result = array();
+        $result['status'] = false;
+        $result['data'] = [];
+
+        if (!empty($id)) {
+            $users = DB::table('users as u')
+            ->where('u.id', $id)
+            ->where('u.status', 1)
+            ->where('r.status', 1)
+            ->join('rols as r', 'u.rols_id', '=', 'r.id')
+            ->select('u.*', 'r.id as rol_id', 'r.name as rol_nombre')
+            ->get();
+
+            if ($users[0]->rol_id == 3) { //Por defecto el rol 3 es de estudiante              
+
+                $qualifications = DB::table('qualifications as q')
+                ->where('q.student_users_id', $id)
+                ->where('q.status',1)
+                ->orderBy('q.created_at', 'asc')
+                ->groupBy('q.teacher_users_id')
+                ->select('q.teacher_users_id as teacher', DB::raw('group_concat(q.nota) as qualifications'))
+                ->get();
+
+                $users[0]->qualifications = $qualifications;
+            }
+
+            $result['status'] = true;
+            $result['data'] = [$users];
+        };
+
+        return  $result;
+    }
+
 }

@@ -69,14 +69,24 @@ Usuarios
                                                     echo '<a onclick="setSubjectUser(3,' . $user->id . ')" class="btn btn-warning btn-sm mb-2 "> Asignar Materia </a>';
                                                     break;
                                             }
+                                            ?>
+                                            <form action="{{ route('users.destroy',$user->id) }}" method="POST">
+                                                <a class="btn btn-sm btn-primary " href="{{ route('users.show',$user->id) }}"><i class="fa fa-fw fa-eye"></i> Mostrar</a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
+                                            </form>
+                                            <?php
+                                        }elseif(auth()->user()->rols_id == 2){
+                                            switch ($user->rol_id) {
+                                                case '3':
+                                                    //Estudiante
+                                                    echo '<a onclick="setQualifications(' . $user->id . ',' . auth()->user()->id .')" class="btn btn-warning btn-sm mb-2 "> Asignar Nota </a>';
+                                                    break;
+                                            }
                                         }
                                         ?>
-                                        <form action="{{ route('users.destroy',$user->id) }}" method="POST">
-                                            <a class="btn btn-sm btn-primary " href="{{ route('users.show',$user->id) }}"><i class="fa fa-fw fa-eye"></i> Mostrar</a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
-                                        </form>
+                                        
                                     </td>
                                 </tr>
                                 @endforeach
@@ -115,5 +125,31 @@ Usuarios
     </div>
 </div>
 <!-- FIN MODAL ASIGNAR MATERIAS -->
+
+
+<!-- MODAL ASIGNAR NOTAS -->
+<div class="modal fade" id="assign_qualifications" tabindex="-1" aria-labelledby="assign_qualificationsLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="assign_qualificationsLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" name="user_qualifications" id="user_qualifications">
+                    <input type="hidden" name="teacher_qualifications" id="teacher_qualifications" value="{{ auth()->user()->id }}">
+                    <label>Escriba la nota a asignar:</label>
+                    <div id="qualifications"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="saveQualifications()" class="btn btn-primary">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FIN MODAL ASIGNAR NOTAS -->
 
 @endsection

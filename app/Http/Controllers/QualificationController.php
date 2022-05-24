@@ -106,4 +106,26 @@ class QualificationController extends Controller
         return redirect()->route('qualifications.index')
             ->with('success', 'Qualification deleted successfully');
     }
+
+    public static function saveQualifications(Array $data = [])
+    {
+
+        $student = $data['student'];
+        $teacher = $data['teacher'];
+        $qualifications = $data['qualifications'];
+
+        $disabled = Qualification::disabledQualifications($student, $teacher);
+
+        for ($i=0; $i < count($qualifications); $i++) {
+            $data = [
+                'nota' => $qualifications[$i],
+                'student_users_id' => $student,
+                'teacher_users_id'=> $teacher
+            ];
+
+            $result[$i] = Qualification::create($data);
+        }
+
+        return $result;
+    }
 }

@@ -25,24 +25,24 @@ Route::get('/', function () {
 });
 
 //Rutas para las asignaturas
-Route::resource('subjects', SubjectController::class); 
+Route::resource('subjects', SubjectController::class)->middleware('auth'); 
 
-Route::resource('qualifications', QualificationController::class); //Rutas para las notas
-Route::resource('settings', SettingController::class); //Rutas para los ajustes del aplicativo
+Route::resource('qualifications', QualificationController::class)->middleware('auth'); //Rutas para las notas
+Route::resource('settings', SettingController::class)->middleware('auth'); //Rutas para los ajustes del aplicativo
 
-Route::resource('student-subjects', StudentSubjectController::class); //Rutas para los estudiantes y sus asignaturas
-Route::resource('teacher-subjects', TeacherSubjectController::class); //Rutas para los docentes y su asignatura
+Route::resource('student-subjects', StudentSubjectController::class)->middleware('auth'); //Rutas para los estudiantes y sus asignaturas
+Route::resource('teacher-subjects', TeacherSubjectController::class)->middleware('auth'); //Rutas para los docentes y su asignatura
 
 //Ruta para ver los estudiantes asociados a un docente y una asignatura
 Route::get('/listEstudiantes', function(){
     return TeacherSubjectController::listStudents();
-});
+})->middleware('auth');
 
 // Rutas para ver, crear, editar, eliminar un usuario.
 Route::get('users/list/{rol}', function ($rol) {
     return  UserController::index($rol);
-});
-Route::resource('users', UserController::class); //Rutas para los usuarios registrados
+})->middleware('auth');
+Route::resource('users', UserController::class)->middleware('auth'); //Rutas para los usuarios registrados
 
 Auth::routes();
 

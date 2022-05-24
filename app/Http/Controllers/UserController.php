@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Qualification;
 use App\Models\rol;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class UserController
@@ -12,12 +14,18 @@ use Illuminate\Http\Request;
  */
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($rol = '')
+    public static function index($rol = '')
     {
         if (!empty($rol)) {
             /**
@@ -111,6 +119,44 @@ class UserController extends Controller
 
         return redirect()->route('users.index')
             ->with('success', 'User updated successfully');
+    }
+
+    /**
+     * Buscamos la informacion relacionada al estudiante
+     * @param array $data
+     */
+    public function getInfoStudent(array $data = [])
+    {
+
+        $result = [
+            'error' => 'Ocurrio un error inesperado, por favor actualiza e intenta nuevamente.'
+        ];
+
+        if (!empty($data)) {
+            $result = [
+                'error' => 'Error al consultar el usuario, por favor actualiza e intenta nuevamente.'
+            ];
+
+            $student = User::getUser($data['student']);
+            $teacher = User::getUser($data['teacher']);
+
+            if ($student['status'] or $teacher['status'] ) {
+
+                $valConnection = Qualification::valUserTeacher($data);
+
+                if ($valConnection['status']) {
+                    $result = [
+                        'student' => $student,
+                        'teacher' => $teacher,
+                        'error' => ''
+                    ];  
+                }
+            }
+
+        }
+
+        return $result;
+
     }
 
     /**

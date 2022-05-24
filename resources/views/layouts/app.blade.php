@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     @yield('script_content')
 
@@ -69,33 +70,25 @@
                         ?>
                             <?= $menu ?>
                         
-                            <li class="nav-item dropdown">
-
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} - 
-                                    <!-- Nombre del Rol --> {{ Auth::user()->rols_id == 1 ? 'Admin' : '' }} {{ Auth::user()->rols_id == 2 ? 'Docente' : '' }} {{ Auth::user()->rols_id == 3 ? 'Estudiante' : '' }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
                                 <?php
                                 // Manejo del menu en base a los roles
                                     if (auth()->user()->rols_id == 1) {
-                                        echo '<a class="dropdown-item" href="/settings">Ajustes</a>'; 
+                                        echo '<li class="nav-item"><a class="nav-link" href="/settings">Ajustes</a></li">'; 
                                     }
                                 ?>
 
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Salir') }}
-                                    </a>
-
+                                <div>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            {{ __('Salir') }}
+                                        </a>
+                                    </li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
-                            </li>
                         @endguest
                     </ul>
                 </div>

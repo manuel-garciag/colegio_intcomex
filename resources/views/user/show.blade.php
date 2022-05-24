@@ -30,7 +30,22 @@
                         </div>
                         <div class="form-group">
                             <strong>Rol:</strong>
-                            {{ $user->rols_id }}
+                            <?php
+                                switch ($user->rols_id ) {
+                                    case 1:
+                                        echo 'Admin';
+                                        break;
+                                    case 2:
+                                        echo 'Docente';
+                                        break;
+                                    case 3:
+                                        echo 'Estudiante';
+                                        break;
+                                    default:
+                                        echo 'Ocurrio un error al consultar el usuario, por favor actualice e intente nuevamente.';
+                                        break;
+                                }
+                            ?>
                         </div>
 
                     </div>

@@ -29,27 +29,15 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
-                                        
 										<th>Nota Minima</th>
 										<th>Num Notas</th>
-
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($settings as $setting)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
+                                        <tr>                                            
 											<td>{{ $setting->nota_minima }}</td>
 											<td>{{ $setting->num_notas }}</td>
-
-                                            <td>
-                                                <form action="{{ route('settings.destroy',$setting->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-success" href="{{ route('settings.edit',$setting->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
-                                                </form>
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
